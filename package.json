@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "allure-commandline": "^2.8.1",
-    "appium": "^1.10.1",
+    "appium": "^1.11.0",
     "appium-controller": "^1.1.6",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
