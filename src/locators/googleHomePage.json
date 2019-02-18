@@ -1,0 +1,13 @@
+{
+    "url": { "URL": "https://www.google.com/" },
+    "title" : {"TITLE": "Google"},
+    "hrefs": {},
+    "buttons": {},
+    "dropdowns": {},
+    "inputs": {
+        "SEARCH_INPUT": "//input[@title='Search']"
+    },
+    "radio_buttons": {},
+    "checkboxes": {},
+    "special": {}
+  }
