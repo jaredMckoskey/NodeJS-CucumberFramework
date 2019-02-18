@@ -360,7 +360,7 @@ class Driver {
       try {
         browser.click(element);
       } catch (error) {
-        browser.pause(2000);
+        browser.pause(1500);
       } finally {
         clicked = true;
       }
