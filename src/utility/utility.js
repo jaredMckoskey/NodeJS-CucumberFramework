@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 class Utility {
   getPage(page) {
     //TODO: Leaving in place for flexibility
