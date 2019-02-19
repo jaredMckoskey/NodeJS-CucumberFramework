@@ -1,9 +1,12 @@
+/* eslint-disable no-console */
+/* eslint-disable no-unused-vars */
 import { Given, When, Then } from "cucumber";
 import Constants from "../../../src/utility/constants";
 import Driver from "../../../src/utility/driver";
 
 // Pulling path of page specific locators for elements
 let pagePath = Constants.getLocatorPath();
+let quote;
 
 /**
  * Common Steps
@@ -151,3 +154,21 @@ When(/^I click the "(.*?)" button on the page if it exists$/,
     }
   //Driver.waitForAngularToLoad();
   });
+
+When(/^I save the text from the "(.*?)" element$/, (element) => {
+  const locator = require(pagePath + `${global.pageContext}.json`).special[element];
+  global.quote = Driver.getElementTextContent(locator).toString();
+  global.quote.replace(global.quote = global.quote.replace(/(\r\n|\n|\r)/gm," "));
+  console.log(global.quote);
+  //console.log(typeof global.quote);
+});
+
+When(/^I enter the text from before into the "(.*?)"$/, (element) => {
+  const input = require(pagePath + `${global.pageContext}.json`).inputs[element];
+  Driver.fillElementWithText(input, (global.quote).toString());
+});
+
+When(/^I send enter to the "(.*?)"$/, (element) => {
+  const locator = require(pagePath + `${global.pageContext}.json`).inputs[element];
+  Driver.fillElementWithText(locator, "\uE007");
+});

@@ -1,0 +1,13 @@
+{
+    "url": { "URL": "" },
+    "title" : {"TITLE": ""},
+    "hrefs": {},
+    "buttons": {},
+    "dropdowns": {},
+    "inputs": {},
+    "radio_buttons": {},
+    "checkboxes": {},
+    "special": {
+        "QUOTE_TEXT": "//div[@class='-vDIg']//span[1]"
+    }
+  }

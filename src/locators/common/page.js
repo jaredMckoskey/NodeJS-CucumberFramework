@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-labels */
 /**
  * Page
  * The core Page Object from while all Page Objects extend.
