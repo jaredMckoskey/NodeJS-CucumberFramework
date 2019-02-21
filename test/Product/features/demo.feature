@@ -1,10 +1,10 @@
-  @demo
+@demo
 Feature: Google Test
 
 Background:
   Given I go to the "googleHomePage" page
 
-  @googleTest
+@googleTest
 Scenario Outline: Google Demo Test
   Then I am on the <Google> page
   When I enter <Search> into the "SEARCH_INPUT"
@@ -14,7 +14,7 @@ Scenario Outline: Google Demo Test
   | Google           | Search         |
   | "googleHomePage" | "Hello World!" |
 
-  @kyroTest
+@kyroTest
 Scenario Outline: Kyro Demo Test
   Then I am on the <Google> page
   When I enter <Search> into the "SEARCH_INPUT"
