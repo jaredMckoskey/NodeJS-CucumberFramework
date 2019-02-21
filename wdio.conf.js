@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
 const capability = require("./capabilities.json")[process.env.CAPABILITY];
 const chai = require("chai");
@@ -174,8 +175,13 @@ exports.config = {
     //   browser.reload();
     // }
   },
-  beforeStep: function (step) { },
+  beforeStep: function (step) {
+    browser.pause(100000);
+    console.log("HI");
+  },
   afterStep: function afterStep(stepResult) {
+    browser.pause(100000);
+    console.log("HI");
     takeScreenshot(stepResult);
   },
   afterScenario: function (scenario) { },

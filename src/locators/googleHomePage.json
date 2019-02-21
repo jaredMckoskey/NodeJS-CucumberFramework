@@ -1,8 +1,15 @@
 {
     "url": { "URL": "https://www.google.com/" },
     "title" : {"TITLE": "Google"},
-    "hrefs": {},
-    "buttons": {},
+    "hrefs": {
+        "KYRO_INSTAGRAM_LINK": "//h3[contains(text(),'Elisabeth Kyro (@elisabethkyro) • Instagram photos')]"
+    },
+    "buttons": {
+        "SEARCH_BUTTON1": "/descendant::input[@value='Google Search'][1]",
+        "SEARCH_BUTTON": "/descendant::input[@value='Google Search'][2]",
+        "IMAGES_BUTTON": "//a[@class='q qs'][contains(text(),'Images')]",
+        "FIRST_IMAGE": "//div[@class='y yf']//div[1]//a[1]//img[1]"
+    },
     "dropdowns": {},
     "inputs": {
         "SEARCH_INPUT": "//input[@title='Search']"
