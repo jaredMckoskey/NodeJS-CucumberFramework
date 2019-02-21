@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
 const capability = require("./capabilities.json")[process.env.CAPABILITY];
 const chai = require("chai");
