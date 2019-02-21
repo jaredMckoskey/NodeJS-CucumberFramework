@@ -389,6 +389,12 @@ class Driver {
   shouldContain(actual, expected) {
     actual.should.contain(expected, `The actual value of ${actual} did not contain the vaule of ${expected}`);
   }
+
+  isDemo() {
+    if (process.env.DEMOENV.toLowerCase() === "yes") {
+      browser.pause(2000);
+    }
+  }
 }
 
 
