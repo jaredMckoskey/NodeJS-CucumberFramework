@@ -1,6 +1,11 @@
 Reasons I love my babes:
 
-1.	Your walk with God. Found this nice quote in some premarital counselors blog - Maya Angelou once said, “A woman’s heart should be so lost in God that her husband has to seek Him in order to find her.” I’ve seen men marvel at the depth of their wives’ relationship with God. They, at times, wonder if they can ever get that personal with God. It’s your ability to be relational, to go below the surface, to put your whole heart into a relationship that intrigues him. When you have an intimate devotional life with Christ, and are controlled by His Spirit, your life will produce the fruits of His Spirit – love, joy, peace, patience, kindness, goodness, faithfulness, gentleness, and self control (Galatians 5:22-23).  What man doesn’t want to chase after a woman who is truly joyful, peaceful, patient, kind, good, faithful, gentle and – they love this one the best – self-controlled!
+1.	Your walk with God. Found this nice quote in some premarital counselors blog - Maya Angelou once said, “A woman’s heart should be so lost in God that her husband has to 
+ seek Him in order to find her.” I’ve seen men marvel at the depth of their wives’ relationship with God. They, at times, wonder if they can ever get that personal with God.
+ It’s your ability to be relational, to go below the surface, to put your whole heart into a relationship that intrigues him. When you have an intimate devotional life with 
+ Christ, and are controlled by His Spirit, your life will produce the fruits of His Spirit – love, joy, peace, patience, kindness, goodness, faithfulness, gentleness, and self 
+ control (Galatians 5:22-23).  What man doesn’t want to chase after a woman who is truly joyful, peaceful, patient, kind, good, faithful, gentle and – they love this one the 
+ best – self-controlled!
 2.	You are my best friend
 3.	You give me time to work on my crazy projects and game.
 4.	You are gorgeous.
