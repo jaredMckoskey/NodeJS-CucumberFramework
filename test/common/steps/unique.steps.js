@@ -30,58 +30,58 @@ When(/^I click the "(.*?)" button on driver number "(.*?)" on the driver list$/,
 });
 
 When(/^I get the down payment from "(.*?)" element$/, (element) => {
-    const locator = require(pagePath + `${global.pageContext}.json`).special[element];
-    global.quotedDownPayment = parseFloat(Driver.getElementTextContent(locator));
-    //console.log(global.quotedDownPayment);
-  });
+  const locator = require(pagePath + `${global.pageContext}.json`).special[element];
+  global.quotedDownPayment = parseFloat(Driver.getElementTextContent(locator));
+  //console.log(global.quotedDownPayment);
+});
   
-  When(/^I check that the quoted down payment is the same at "(.*?)"$/, (element) => {
-    const locator = require(pagePath + `${global.pageContext}.json`).inputs[element];
-    let downPaymentInput = Driver.getElementValueContent(locator);
-    if (downPaymentInput.includes(global.quotedDownPayment)) {
-      //console.log(downPaymentInput);
-    } else if (downPaymentInput === "") {
-      Driver.deleteElementText(locator);
-      Driver.fillElementWithText(locator, global.quotedDownPayment);
-      //console.log(`Value was empty, changed value to ${Driver.getElementValueContent(locator)}`);
-    } else {
-      Driver.deleteElementText(locator);
-      Driver.fillElementWithText(locator, global.quotedDownPayment);
-      //console.log(`Value was ${downPaymentInput}, changed value to ${Driver.getElementValueContent(locator)}`);
-    }
-  });
+When(/^I check that the quoted down payment is the same at "(.*?)"$/, (element) => {
+  const locator = require(pagePath + `${global.pageContext}.json`).inputs[element];
+  let downPaymentInput = Driver.getElementValueContent(locator);
+  if (downPaymentInput.includes(global.quotedDownPayment)) {
+    //console.log(downPaymentInput);
+  } else if (downPaymentInput === "") {
+    Driver.deleteElementText(locator);
+    Driver.fillElementWithText(locator, global.quotedDownPayment);
+    //console.log(`Value was empty, changed value to ${Driver.getElementValueContent(locator)}`);
+  } else {
+    Driver.deleteElementText(locator);
+    Driver.fillElementWithText(locator, global.quotedDownPayment);
+    //console.log(`Value was ${downPaymentInput}, changed value to ${Driver.getElementValueContent(locator)}`);
+  }
+});
 
-  // Values: Expired, Released, Pre-Release.
+// Values: Expired, Released, Pre-Release.
 Then(/^I verify that the status of policy "(.*?)" is "(.*?)" in the db$/, (policyNumber, text) => {
-    Driver.wait(1);
-    let code = Driver.getStateCodes(policyNumber);
-    let database = Driver.getDatabase(code);
-    return new Promise((resolve, reject) => {
-      Connect.runQuery(database, Queries.policyStatusVerification(policyNumber, code))
-        .then((result) => {
-          resolve(Driver.shouldBeEqual(result[0].trim(), text));
-        }).catch(err => reject(err));
-    });
+  Driver.wait(1);
+  let code = Driver.getStateCodes(policyNumber);
+  let database = Driver.getDatabase(code);
+  return new Promise((resolve, reject) => {
+    Connect.runQuery(database, Queries.policyStatusVerification(policyNumber, code))
+      .then((result) => {
+        resolve(Driver.shouldBeEqual(result[0].trim(), text));
+      }).catch(err => reject(err));
   });
+});
   
-  When(/^I get the state code of the "(.*?)" policy$/, (policy) => {
-    Driver.getStateCodes(policy);
-  });
+When(/^I get the state code of the "(.*?)" policy$/, (policy) => {
+  Driver.getStateCodes(policy);
+});
 
-  When(/I should see "(.*?)" has been submitted today on the page$/, (receipt) => {
-    Driver.loop(receipt);
-  });
+When(/I should see "(.*?)" has been submitted today on the page$/, (receipt) => {
+  Driver.loop(receipt);
+});
   
-  When(/^I create a random payment that has not been used today$/,() => {
-    let payment;
-    do {
-      payment = Driver.getRandomInt(10, 100).toFixed(2);
-      console.log(payment);
-    }
-    while (Driver.paymentsToday(payment) === false);
-  });
+When(/^I create a random payment that has not been used today$/,() => {
+  let payment;
+  do {
+    payment = Driver.getRandomInt(10, 100).toFixed(2);
+    console.log(payment);
+  }
+  while (Driver.paymentsToday(payment) === false);
+});
   
-  When(/^I create a random payment$/,() => {
-    randomPayment = Driver.createPayment();
-    console.log(randomPayment);
-  });
+When(/^I create a random payment$/,() => {
+  randomPayment = Driver.createPayment();
+  console.log(randomPayment);
+});
