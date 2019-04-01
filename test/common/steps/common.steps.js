@@ -191,7 +191,12 @@ When(/^I enter the text from before into the "(.*?)"$/, (element) => {
 });
 
 When(/^I send enter to the "(.*?)"$/, (element) => {
-  Driver.isDemo();
   const locator = require(pagePath + `${global.pageContext}.json`).inputs[element];
   Driver.fillElementWithText(locator, "\uE007");
+  Driver.isDemo();
+});
+
+When(/^I take a screenshot$/,() => {
+  Driver.wait(1);
+  Driver.takeScreenshot();
 });

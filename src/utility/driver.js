@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import Constants from "../utility/constants";
 /**
  * The Driver is a wrapper around the WebDriverIO 'browser' object.
@@ -395,7 +396,137 @@ class Driver {
       browser.pause(2000);
     }
   }
+
+  /**
+   * Log into IPS Test Environment with test credentials, if none are defined. Test Credentials currently do not have full access to IPS.
+   */
+  login() {
+    let pagePath = Constants.getLocatorPath();
+    let userInput = require(pagePath + "loginPage.json").inputs["USER_NAME_INPUT"];
+    let passInput = require(pagePath + "loginPage.json").inputs["PASSWORD_INPUT"];
+
+    browser.url(require(Constants.getLocatorPath() + "loginPage.json").url["URL"]);
+    browser.windowHandleMaximize();
+    browser.waitForExist(userInput);
+    
+    if (process.env.TESTENV === "QA") {
+      browser.clearElement(userInput);
+      browser.clearElement(passInput);
+      browser.addValue(userInput, process.env.LOCALUSER);
+      browser.addValue(passInput, process.env.LOCALPASS);
+    } else if (process.env.TESTENV === "GRID" || process.env.TESTENV === "") {
+      browser.clearElement(userInput);
+      browser.clearElement(passInput);
+      browser.addValue(userInput, process.env.GRIDUSER);
+      browser.addValue(passInput, process.env.GRIDPASS);
+    }
+    browser.click(require(Constants.getLocatorPath() + "loginPage.json").buttons["LOGIN_BUTTON"]);
+  }
+
+  unlockPolicy() {
+    let pagePath = Constants.getLocatorPath();
+    let unlock = require(pagePath + "ipsSidebar.json").buttons["UNLOCK_BUTTON"];
+
+    if ((browser.isExisting(unlock) && browser.isEnabled(unlock)) === true) {
+      browser.click(require(pagePath + "ipsSidebar.json").buttons["UNLOCK_BUTTON"]);
+      browser.alertAccept();
+      browser.waitForExist(unlock, 25000, true);
+    } else {
+      return true;
+    }
+  }
+
+  getStateCodes(policy) {
+    policy.split();
+    let state = require(Constants.getStateCode()).codes[policy[1]+policy[2]];
+    return state;
+  }
+
+  getDatabase(code) {
+    if (code === "FL" || code === "PA" || code === "SC") {
+      let database = "unix_test_1_db";
+      return database;
+    } else {
+      let database = "unix_test_2_db";
+      return database;
+    }
+  }
+
+  takeScreenshot() {
+    const path = require("path");
+    const fs = require("fs");
+    let shotPath = "./results/screenshots/";
+    let fileName = `Screenshot_${process.env.CAPABILITY}${Date.now()}.png`;
+    const resolvedPath = path.resolve(shotPath, fileName);
+    const dir = path.dirname(resolvedPath);
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir); }
+    browser.saveScreenshot(resolvedPath);
+  }
+
+  loop(receipt) {
+    let pagePath = Constants.getLocatorPath();
+    let i;
+    let dateCell = require(pagePath + "transactionsPage.json").special["ENTRY_DATE"];
+    let receiptCell = require(pagePath + "transactionsPage.json").special["RECEIPT"];
+    let table = require(pagePath + "transactionsPage.json").special["TABLE"];
+    let date = "07/31/2018";
+    //let date = Constants.todaysDate();
+    let match = receipt;
+    //console.log(date);
+    //console.log(receipt);
+    for (i = 1; browser.isExisting(`${table}${i}]`); i++) {
+      //console.log(i);
+      if (browser.isExisting(`${dateCell}${i}']`) && browser.isExisting(`${receiptCell}${i}']`)) {
+        let dateValue = browser.getText(`${dateCell}${i}']`);
+        let receiptValue = browser.getText(`${receiptCell}${i}']`);
+        if (dateValue === date && receiptValue === receipt) {
+          match = true;
+          console.log(`${date} and ${receipt} match at index ${i}`);
+          break;
+        }
+      }
+    } expect(match, "Did not find payment on the page").to.be.true;
+  }
+
+  paymentsToday(receipt) {
+    let pagePath = Constants.getLocatorPath();
+    let i;
+    let dateCell = require(pagePath + "transactionsPage.json").special["ENTRY_DATE"];
+    let receiptCell = require(pagePath + "transactionsPage.json").special["RECEIPT"];
+    let table = require(pagePath + "transactionsPage.json").special["TABLE"];
+    let date = Constants.todaysDate();
+    //console.log(date);
+    //console.log(receipt);
+    for (i = 1; browser.isExisting(`${table}${i}]`); i++) {
+      //console.log(i);
+      if (browser.isExisting(`${dateCell}${i}']`) && browser.isExisting(`${receiptCell}${i}']`)) {
+        let dateValue = browser.getText(`${dateCell}${i}']`);
+        let receiptValue = browser.getText(`${receiptCell}${i}']`);
+        if (dateValue === date && receiptValue === receipt) {
+          console.log(`${date} and ${receipt} match at index ${i}`);
+          return false;
+        }
+      }
+    }
+  }
+
+  getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.random() * (max - min) + min; //The maximum is exclusive and the minimum is inclusive
+  }
+
+  createPayment() {
+    let date = new Date()
+    let time = date.getTime()*.01.toFixed(2).toString().split();
+    delete time[0-9];
+    console.log(date);
+    console.log(time);
+    //console.log(payment);
+  }
 }
+
 
 
 export default new Driver();
