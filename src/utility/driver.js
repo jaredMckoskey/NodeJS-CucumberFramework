@@ -402,10 +402,10 @@ class Driver {
    */
   login() {
     let pagePath = Constants.getLocatorPath();
-    let userInput = require(pagePath + "loginPage.json").inputs["USER_NAME_INPUT"];
-    let passInput = require(pagePath + "loginPage.json").inputs["PASSWORD_INPUT"];
+    let userInput = require(pagePath + ".json").inputs["USER_NAME_INPUT"];
+    let passInput = require(pagePath + ".json").inputs["PASSWORD_INPUT"];
 
-    browser.url(require(Constants.getLocatorPath() + "loginPage.json").url["URL"]);
+    browser.url(require(Constants.getLocatorPath() + ".json").url["URL"]);
     browser.windowHandleMaximize();
     browser.waitForExist(userInput);
     
@@ -420,15 +420,15 @@ class Driver {
       browser.addValue(userInput, process.env.GRIDUSER);
       browser.addValue(passInput, process.env.GRIDPASS);
     }
-    browser.click(require(Constants.getLocatorPath() + "loginPage.json").buttons["LOGIN_BUTTON"]);
+    browser.click(require(Constants.getLocatorPath() + ".json").buttons["LOGIN_BUTTON"]);
   }
 
   unlockPolicy() {
     let pagePath = Constants.getLocatorPath();
-    let unlock = require(pagePath + "ipsSidebar.json").buttons["UNLOCK_BUTTON"];
+    let unlock = require(pagePath + ".json").buttons["UNLOCK_BUTTON"];
 
     if ((browser.isExisting(unlock) && browser.isEnabled(unlock)) === true) {
-      browser.click(require(pagePath + "ipsSidebar.json").buttons["UNLOCK_BUTTON"]);
+      browser.click(require(pagePath + ".json").buttons["UNLOCK_BUTTON"]);
       browser.alertAccept();
       browser.waitForExist(unlock, 25000, true);
     } else {
