@@ -122,6 +122,17 @@ When(/^I enter "(.*?)" into the "(.*?)"$/, (value, element) => {
   Driver.fillElementWithText(input, value);
 });
 
+When(/^I enter todays date into the "(.*?)"$/, (element) => {
+  const input = require(pagePath + `${global.pageContext}.json`).inputs[element];
+  const date = Constants.todaysDate();
+  Driver.getElementValueContent(input);
+  //console.log(date);
+  Driver.deleteElementText(input);
+  Driver.clickWhenVisible(input);
+  Driver.fillElementWithText(input, `\uE011${date}`); // "\uE011" is HOME key
+  Driver.isDemo();
+});
+
 When(/^I delete text from the "(.*?)"$/,
   (element) => {
     Driver.isDemo();
@@ -199,4 +210,18 @@ When(/^I send enter to the "(.*?)"$/, (element) => {
 When(/^I take a screenshot$/,() => {
   Driver.wait(1);
   Driver.takeScreenshot();
+});
+
+When(/^I enter debug mode$/,() => {
+  Driver.debug();
+});
+
+When(/^I switch to "(.*?)" frame$/, (frameID) => {
+  const iFrame = require(pagePath + `${global.pageContext}.json`).special[frameID];
+  Driver.switchToFrame(iFrame);
+
+});
+
+When(/^I switch back to page$/, () => {
+  Driver.switchToParentFrame();
 });

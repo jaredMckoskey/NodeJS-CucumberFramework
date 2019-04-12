@@ -525,6 +525,28 @@ class Driver {
     console.log(time);
     //console.log(payment);
   }
+
+  debug() {
+    browser.debug();
+  }
+  
+  /**
+ * Switches to frame on page.
+ * @param {*} frameID frame to switch to.
+ */
+  switchToFrame(frameID) {
+    browser.waitForExist(frameID);
+    var my_frameID = $(frameID).value;
+    browser.frame(my_frameID);
+    //switches to the frame
+  }
+  
+  /**
+     * Switches to out of frame on page.
+     */
+  switchToParentFrame() {
+    browser.frameParent();
+  }
 }
 
 
