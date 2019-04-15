@@ -2,4 +2,4 @@ class Response {
 
 }
 
-module.exports = new Response();
+export default new Response();

@@ -518,7 +518,7 @@ class Driver {
   }
 
   createPayment() {
-    let date = new Date()
+    let date = new Date();
     let time = date.getTime()*.01.toFixed(2).toString().split();
     delete time[0-9];
     console.log(date);
