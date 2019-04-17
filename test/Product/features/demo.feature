@@ -10,12 +10,12 @@ Scenario Outline: Google Demo Test
   When I enter <Search> into the "SEARCH_INPUT"
   And I wait for "3" seconds
 
-  Examples:
+Examples:
   | Google           | Search         |
   | "googleHomePage" | "Hello World!" |
 
-@kyroTest
-Scenario Outline: Kyro Demo Test
+@tapQA
+Scenario Outline: tap|QA Demo Test
   Then I am on the "googleHomePage" page
   When I enter <Search> into the "SEARCH_INPUT"
   And I send enter to the "SEARCH_INPUT"
