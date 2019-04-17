@@ -379,7 +379,7 @@ class Driver {
    * @param {*} expected Expected value.
    */
   shouldBeEqual(actual, expected) {
-    expected.should.be.equal(actual, `The expected value of ${expected} did not match the actual vaule of ${actual}`);
+    expected.should.be.equal(actual, `The expected value of ${expected} did not match the actual value of ${actual}`);
   }
   
   /**
@@ -388,7 +388,7 @@ class Driver {
    * @param {*} expected Expected value.
    */
   shouldContain(actual, expected) {
-    actual.should.contain(expected, `The actual value of ${actual} did not contain the vaule of ${expected}`);
+    actual.should.contain(expected, `The actual value of ${actual} did not contain the value of ${expected}`);
   }
 
   isDemo() {
@@ -545,6 +545,14 @@ class Driver {
      */
   switchToParentFrame() {
     browser.frameParent();
+  }
+
+  log(value) {
+    console.log(value);
+  }
+
+  getURL() {
+    return browser.getUrl().toString();
   }
 }
 

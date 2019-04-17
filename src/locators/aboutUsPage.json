@@ -1,5 +1,5 @@
 {
-    "url": { "URL": "" },
+    "url": { "URL": "https://www.tapqa.com/about-us/" },
     "title" : {"TITLE": ""},
     "hrefs": {},
     "buttons": {},
@@ -7,7 +7,5 @@
     "inputs": {},
     "radio_buttons": {},
     "checkboxes": {},
-    "special": {
-        "QUOTE_TEXT": "//div[@class='-vDIg']//span[1]"
-    }
+    "special": {}
   }

@@ -12,15 +12,16 @@ let quote;
  * Common Steps
  */
 Given(/^I go to the "(.*?)" page$/, pageName => {
-  Driver.isDemo();
   global.pageContext = pageName;
-  const url = require(pagePath + `${global.pageContext}.json`).url["URL"];
+  let url = require(pagePath + `${global.pageContext}.json`).url["URL"];
   Driver.loadUrl(Constants.getBaseUrl() + url);
 });
 
 Given(/^I am on the "(.*?)" page$/, pageName => {
   Driver.isDemo();
   global.pageContext = pageName;
+  let url = require(pagePath + `${global.pageContext}.json`).url["URL"];
+  Driver.shouldContain(Driver.getURL(), url);
 });
 
 When(/^I switch to the "(.*?)" window$/, (window) => {
@@ -224,4 +225,8 @@ When(/^I switch to "(.*?)" frame$/, (frameID) => {
 
 When(/^I switch back to page$/, () => {
   Driver.switchToParentFrame();
+});
+
+When(/^I say hello to cal$/, () => {
+  Driver.log("Hello Cal!");
 });

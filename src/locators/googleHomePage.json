@@ -2,7 +2,7 @@
     "url": { "URL": "https://www.google.com/" },
     "title" : {"TITLE": "Google"},
     "hrefs": {
-        "KYRO_INSTAGRAM_LINK": "//h3[contains(text(),'Elisabeth Kyro (@elisabethkyro) • Instagram photos')]"
+        "TAP_QA_LINK": "//h3[contains(text(),'tap|QA Software Quality Testing Consulting, Contin')]"
     },
     "buttons": {
         "SEARCH_BUTTON1": "/descendant::input[@value='Google Search'][1]",
