@@ -391,10 +391,9 @@ class Driver {
     actual.should.contain(expected, `The actual value of ${actual} did not contain the vaule of ${expected}`);
   }
 
-  isDemo() {
-    if (process.env.DEMOENV.toLowerCase() === "yes") {
-      browser.pause(2000);
-    }
+  isDemo(value) {
+    let time = process.env.DEMOTIME;
+    browser.pause(time);
   }
 
   /**
