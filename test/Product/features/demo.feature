@@ -19,7 +19,7 @@ Scenario Outline: tap|QA Demo Test
   Then I am on the "googleHomePage" page
   When I enter <Search> into the "SEARCH_INPUT"
   And I send enter to the "SEARCH_INPUT"
-   And I take a screenshot
+  And I take a screenshot
   And I click the "TAP_QA_LINK" link on the page
   Then I am on the "tapQAHomePage" page
   When I say hello to cal
