@@ -176,12 +176,12 @@ exports.config = {
     // }
   },
   beforeStep: function (step) {
-    browser.pause(100000);
-    console.log("HI");
+    //browser.pause(100000);
+    //console.log("HI");
   },
   afterStep: function afterStep(stepResult) {
-    browser.pause(100000);
-    console.log("HI");
+    //browser.pause(100000);
+    //console.log("HI");
     takeScreenshot(stepResult);
   },
   afterScenario: function (scenario) { },

@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "allure-commandline": "^2.8.1",
-    "appium": "^1.11.0",
+    "appium": "^1.12.1",
     "appium-controller": "^1.1.6",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
@@ -23,6 +23,7 @@
     "google-auth-library": "^2.0.1",
     "googleapis": "^35.0.0",
     "jsdoc": "^3.5.5",
+    "lodash": "^4.17.11",
     "oracledb": "^3.1.1",
     "promise": "^8.0.2",
     "shelljs": "^0.8.3",
@@ -162,8 +163,5 @@
         "CAPABILITY": "firefox"
       }
     }
-  },
-  "dependencies": {
-    "lodash": "^4.17.11"
   }
 }
