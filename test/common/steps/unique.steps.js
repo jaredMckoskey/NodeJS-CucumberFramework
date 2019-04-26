@@ -88,3 +88,9 @@ When(/^I create a random payment$/,() => {
   randomPayment = Driver.createPayment();
   console.log(randomPayment);
 });
+
+Then(/^I search the page for my created event with "(.*?)" title$/, (value) => {
+  Driver.isDemo();
+  const event = require(pagePath + `${global.pageContext}.json`).special["TABLE_TITLE"];
+  Driver.shouldSeeElement(`${event}${value}')]`);
+});

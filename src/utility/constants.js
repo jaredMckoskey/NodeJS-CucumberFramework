@@ -4,11 +4,11 @@ class Constants {
   getShortWait() { return 5000; }
 
   getBaseUrl() {
-    const env = process.env.TEST_ENV;
-    if (env == "prod") {
-      return "";
-    } else {
-      return "";
+    const env = process.env.TESTENV;
+    if (env == "QA") {
+      return "https://ocean-hospitality-ui.qa.ocean.com/";
+    } else if (env == "XIS") {
+      return "https://ocean-hospitality-ui.xis.ocean.com/";
     }
   }
 
@@ -57,7 +57,7 @@ class Constants {
     if(mm<10) {
       mm = `0${mm}`;
     }
-    return `${mm}/${dd}/${yyyy}`;
+    return `${yyyy}-${mm}-${dd}`;
   }
 }
 export default new Constants();

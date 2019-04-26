@@ -155,6 +155,17 @@ class Driver {
   fillElementWithText(element, text) {
     browser.waitForVisible(element);
     browser.waitForEnabled(element);
+    browser.setValue(element, text);
+  }
+
+  /**
+   * Sends text to given element with date field functionality.
+   * @param {*} element Element to send text to.
+   * @param {*} text Text to be pass into element.
+   */
+  addValueToElement(element, text) {
+    browser.waitForVisible(element);
+    browser.waitForEnabled(element);
     browser.addValue(element, text);
   }
 
@@ -194,6 +205,7 @@ class Driver {
    * @param {*} url URL to go to.
    */
   loadUrl(url) {
+    browser.deleteCookie();
     browser.url(url);
     if (!this.isMobile()) {
       browser.windowHandleMaximize();
@@ -318,8 +330,15 @@ class Driver {
    * @param {*} element Element to wait for.
    */
   waitForElementNotToExist(element) {
-    browser.waitForExist(element); // Wait for element to exist
-    browser.waitForExist(element, 120000, false); // Now wait for it to NOT exist (2 mins)
+    // browser.waitForExist(element); // Wait for element to exist
+    // browser.waitForExist(element, 120000, true); // Now wait for it to NOT exist (2 mins)
+    try {
+      browser.waitForExist(element, 3000); // Wait for element to exist
+    } catch (error) {
+      return true;
+    } finally {
+      browser.waitForExist(element, 120000, true); // Now wait for it to NOT exist (2 mins)
+    }
   }
 
   /**
@@ -356,6 +375,7 @@ class Driver {
   clickWhenVisible(element) {
     browser.waitForExist(element);
     browser.waitForVisible(element);
+    browser.waitForEnabled(element);
     let clicked = false;
     do {
       try {
@@ -391,24 +411,44 @@ class Driver {
     actual.should.contain(expected, `The actual value of ${actual} did not contain the value of ${expected}`);
   }
 
+  waitFor(actual, expected) {
+    // browser.waitUntil(actual.should.contain(expected), 120000, `The actual value of ${actual} did not contain the value of ${expected}`);
+    try {
+      actual.should.contain(expected, `The actual value of ${actual} did not contain the value of ${expected}`);
+    } catch (error) {
+      browser.wait(200);
+    } finally {
+      actual.should.contain(expected, `The actual value of ${actual} did not contain the value of ${expected}`);
+    }
+  }
+
   isDemo() {
+    // let pagePath = Constants.getLocatorPath();
+    // let element = require(pagePath + "oceanHospitalityHomePage.json").special["LOADING_SCREEN"];
     let time = process.env.DEMOTIME;
-    browser.pause(time);
+    browser.pause(time * 1000);
+    // try {
+    //   browser.waitForExist(element, 3000);
+    // } catch (error) {
+    //   return true;
+    // } finally {
+    //   browser.waitForExist(element, 120000, true); // Now wait for it to NOT exist (2 mins)
+    // }
   }
 
   /**
    * Log into IPS Test Environment with test credentials, if none are defined. Test Credentials currently do not have full access to IPS.
    */
-  login() {
+  loginToOceanHospitality() {
     let pagePath = Constants.getLocatorPath();
-    let userInput = require(pagePath + ".json").inputs["USER_NAME_INPUT"];
-    let passInput = require(pagePath + ".json").inputs["PASSWORD_INPUT"];
+    let userInput = require(pagePath + "oceanHospitalityLoginPage.json").inputs["USERNAME_INPUT"];
+    let passInput = require(pagePath + "oceanHospitalityLoginPage.json").inputs["PASSWORD_INPUT"];
 
-    browser.url(require(Constants.getLocatorPath() + ".json").url["URL"]);
+    browser.url(Constants.getBaseUrl());
     browser.windowHandleMaximize();
     browser.waitForExist(userInput);
     
-    if (process.env.TESTENV === "QA") {
+    if (process.env.TESTENV === "QA" || process.env.TESTENV === "XIS") {
       browser.clearElement(userInput);
       browser.clearElement(passInput);
       browser.addValue(userInput, process.env.LOCALUSER);
@@ -419,7 +459,7 @@ class Driver {
       browser.addValue(userInput, process.env.GRIDUSER);
       browser.addValue(passInput, process.env.GRIDPASS);
     }
-    browser.click(require(Constants.getLocatorPath() + ".json").buttons["LOGIN_BUTTON"]);
+    browser.click(require(Constants.getLocatorPath() + "oceanHospitalityLoginPage.json").buttons["LOG_IN_BUTTON"]);
   }
 
   unlockPolicy() {
