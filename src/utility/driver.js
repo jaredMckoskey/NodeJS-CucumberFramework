@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import Constants from "../utility/constants";
+import Utility from "./utility";
 /**
  * The Driver is a wrapper around the WebDriverIO 'browser' object.
  * It can be used for both mobile and web.
@@ -510,7 +511,7 @@ class Driver {
     let receiptCell = require(pagePath + "transactionsPage.json").special["RECEIPT"];
     let table = require(pagePath + "transactionsPage.json").special["TABLE"];
     let date = "07/31/2018";
-    //let date = Constants.todaysDate();
+    //let date = Utility.todaysDate();
     let match = receipt;
     //console.log(date);
     //console.log(receipt);
@@ -534,7 +535,7 @@ class Driver {
     let dateCell = require(pagePath + "transactionsPage.json").special["ENTRY_DATE"];
     let receiptCell = require(pagePath + "transactionsPage.json").special["RECEIPT"];
     let table = require(pagePath + "transactionsPage.json").special["TABLE"];
-    let date = Constants.todaysDate();
+    let date = Utility.todaysDate();
     //console.log(date);
     //console.log(receipt);
     for (i = 1; browser.isExisting(`${table}${i}]`); i++) {

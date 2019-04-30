@@ -3,6 +3,7 @@
 import { Given, When, Then } from "cucumber";
 import Constants from "../../../src/utility/constants";
 import Driver from "../../../src/utility/driver";
+import Utility from "../../../src/utility/utility";
 
 // Pulling path of page specific locators for elements
 let pagePath = Constants.getLocatorPath();
@@ -36,7 +37,7 @@ When(/^I enter "(.*?)" date into the "(.*?)"$/, (value, element) => {
   
 When(/^I enter todays date into the "(.*?)"$/, (element) => {
   const input = require(pagePath + `${global.pageContext}.json`).inputs[element];
-  const date = Constants.todaysDate();
+  const date = Utility.todaysDate();
   Driver.isDemo();
   Driver.getElementValueContent(input);
   //console.log(date);
