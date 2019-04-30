@@ -5,8 +5,8 @@
         "TAP_QA_LINK": "//h3[contains(text(),'tap|QA Software Quality Testing Consulting, Contin')]"
     },
     "buttons": {
-        "SEARCH_BUTTON1": "/descendant::input[@value='Google Search'][1]",
-        "SEARCH_BUTTON": "/descendant::input[@value='Google Search'][2]",
+        "SEARCH_BUTTON": "/descendant::input[@value='Google Search'][1]",
+        "SEARCH_BUTTON2": "/descendant::input[@value='Google Search'][2]",
         "IMAGES_BUTTON": "//a[@class='q qs'][contains(text(),'Images')]",
         "FIRST_IMAGE": "//div[@class='y yf']//div[1]//a[1]//img[1]"
     },
