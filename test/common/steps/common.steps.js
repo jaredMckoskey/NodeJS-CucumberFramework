@@ -14,7 +14,7 @@ let pagePath = Constants.getLocatorPath();
 Given(/^I go to the "(.*?)" page$/, pageName => {
   global.pageContext = pageName;
   let url = require(pagePath + `${global.pageContext}.json`).url["URL"];
-  Driver.loadUrl(Constants.getBaseUrl());
+  Driver.loadUrl(Constants.getBaseUrl() + url);
 });
 
 Given(/^I login to the test environment$/, () => {
