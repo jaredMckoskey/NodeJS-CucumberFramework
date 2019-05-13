@@ -1,0 +1,13 @@
+{
+    "url": { "URL": "https://nodejs.org/en/" },
+    "title" : {"TITLE": ""},
+    "hrefs": {},
+    "buttons": {
+        "LTS_BUTTON": "//div[@id='home-intro']//a[@title='Download 10.15.3 LTS']"
+    },
+    "dropdowns": {},
+    "inputs": {},
+    "radio_buttons": {},
+    "checkboxes": {},
+    "special": {}
+  }

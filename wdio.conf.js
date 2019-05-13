@@ -95,9 +95,12 @@ exports.config = {
   // WebDriverIO specific hooks
   onPrepare: function (config, capabilities) {
     //cleanup existing screenshots before run
+
     const path = require("path");
     var deletePath = path.resolve("./results");
+    var tempDownloadsPath = path.resolve("./results/tempDownloads/");
     deleteFolderRecursive(deletePath);
+    mkDirByPathSync(tempDownloadsPath);
     // Deals with All tag 
     if (process.env.TAG === "@All") {
       process.env.TAG = "";

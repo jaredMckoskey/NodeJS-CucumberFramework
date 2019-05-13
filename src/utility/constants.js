@@ -1,3 +1,5 @@
+import { pathToFileURL } from "url";
+
 class Constants {
   getLongWait() { return 60000; }
   getMediumWait() { return 20000; }
@@ -23,6 +25,21 @@ class Constants {
     } else {
       return pagePath + product + "/";
     }
+  }
+
+  findFile(dir, file) {
+    const path = require("path");
+    const find = require("find");
+    console.log(dir);
+    console.log(find.fileSync(dir, function(file) {
+      return path.resolve(file).toString();
+    }));
+    find.fileSync(dir, function(file) {
+      return path.resolve(file).toString();
+    });
+    // const findUp = require("find-up");
+    // console.log(findUp.sync(file));
+    // return findUp.sync(file);
   }
   
   getDBInfoPath() {
